@@ -1,0 +1,24 @@
+# Name of the Pipeline
+name: Hello CI
+
+# Run Name
+run-name: Hello ${{ github.actor }}, this action was triggered by ${{ github.eventname }}
+
+# When will it run
+on: [push, pull_request]
+
+# What should be done
+jobs: 
+  hello_job:
+    # not needed otherwise the the job name, here hello_job
+    name: Hello CI job
+    # Runner
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Hello, I am running on ${{ runner.os }}"
+      - name: Checkout repostitory
+        uses: actions/checkout@v4
+      - name: List my Files
+        run: |
+          ls ${{ github.workspace }}
+
